@@ -1,0 +1,4 @@
+.idea
+*.pyc
+jenkins-workflow.iml
+*.coverage
