@@ -2,3 +2,4 @@
 *.pyc
 jenkins-workflow.iml
 *.coverage
+.DS_Store
