@@ -25,7 +25,7 @@ class JenkinsInterface(object):
 
         def _get_jobs_json():
             jenkins_url = _get_jenkins_url()
-            return self._web_wrapper.get("{}/api/json?tree=jobs[name,url,color]".format(jenkins_url)).json()['jobs']
+            return self._web_wrapper.get("{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)).json()['jobs']
 
         jobs = [Job(data) for data in _get_jobs_json()]
         if query:

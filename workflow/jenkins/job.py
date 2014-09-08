@@ -20,3 +20,7 @@ class Job(object):
     @property
     def image(self):
         return "{}/images/{}.png".format(os.getcwdu(), self.status)
+
+    @property
+    def description(self):
+        return self._data.get('description', "")
