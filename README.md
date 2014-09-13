@@ -1,4 +1,4 @@
-Jenkins-Alfred-Workflow
+Jenkins-Alfred-Workflow ![travis ci](https://travis-ci.org/Amwam/Jenkins-Alfred-Workflow.svg?branch=master)
 =======================
 
 An Alfred workflow to lookup jobs on a Jenkins server
