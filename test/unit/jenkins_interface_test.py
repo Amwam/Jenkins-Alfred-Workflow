@@ -4,12 +4,14 @@ import mockito
 from workflow import Workflow
 from workflow.jenkins.jenkins_interface import JenkinsInterface
 
+JENKINS_URL = "http://some-url:8080"
+
 
 class TestJenkinsInterface(TestCase):
     def setUp(self):
         self.mock_wrapper = mock()
         self.workflow = Workflow()
-        self.workflow.settings['jenkins_url'] = "http://some-url"
+        self.workflow.settings['jenkins_url'] = "%s" % JENKINS_URL
         self.jenkins_interface = JenkinsInterface(self.workflow, self.mock_wrapper)
         self.mock_response = mock()
         when(self.mock_wrapper).get(any()).thenReturn(self.mock_response)
@@ -38,10 +40,10 @@ class TestJenkinsInterface(TestCase):
         when(self.mock_response).json().thenReturn(
             {
                 'jobs': [
-                    {'name': 'test1', 'color': 'red', 'url': 'http://some-url'},
-                    {'name': 'test2', 'color': 'blue', 'url': 'http://some-url'},
-                    {'name': 'test3', 'color': 'yellow', 'url': 'http://some-url'},
-                    {'name': 'test4', 'color': 'redanime', 'url': 'http://some-url'}
+                    {'name': 'test1', 'color': 'red', 'url': JENKINS_URL},
+                    {'name': 'test2', 'color': 'blue', 'url': JENKINS_URL},
+                    {'name': 'test3', 'color': 'yellow', 'url': JENKINS_URL},
+                    {'name': 'test4', 'color': 'redanime', 'url': JENKINS_URL}
                 ]
             }
         )
@@ -56,10 +58,10 @@ class TestJenkinsInterface(TestCase):
         when(self.mock_response).json().thenReturn(
             {
                 'jobs': [
-                    {'name': 'test1', 'color': 'red', 'url': 'http://some-url'},
-                    {'name': 'test2', 'color': 'blue', 'url': 'http://some-url'},
-                    {'name': 'test3', 'color': 'yellow', 'url': 'http://some-url'},
-                    {'name': 'test4', 'color': 'redanime', 'url': 'http://some-url'}
+                    {'name': 'test1', 'color': 'red', 'url': JENKINS_URL},
+                    {'name': 'test2', 'color': 'blue', 'url': JENKINS_URL},
+                    {'name': 'test3', 'color': 'yellow', 'url': JENKINS_URL},
+                    {'name': 'test4', 'color': 'redanime', 'url': JENKINS_URL}
                 ]
             }
         )
@@ -72,11 +74,11 @@ class TestJenkinsInterface(TestCase):
         when(self.mock_response).json().thenReturn(
             {
                 'jobs': [
-                    {'name': 'test1', 'color': 'red', 'url': 'http://some-url'},
-                    {'name': 'test2', 'color': 'blue', 'url': 'http://some-url'},
-                    {'name': 'test3', 'color': 'yellow', 'url': 'http://some-url'},
-                    {'name': 'test4', 'color': 'redanime', 'url': 'http://some-url'},
-                    {'name': 'test5', 'color': 'redanime', 'url': 'http://some-url'}
+                    {'name': 'test1', 'color': 'red', 'url': JENKINS_URL},
+                    {'name': 'test2', 'color': 'blue', 'url': JENKINS_URL},
+                    {'name': 'test3', 'color': 'yellow', 'url': JENKINS_URL},
+                    {'name': 'test4', 'color': 'redanime', 'url': JENKINS_URL},
+                    {'name': 'test5', 'color': 'redanime', 'url': JENKINS_URL}
                 ]
             }
         )
@@ -90,11 +92,11 @@ class TestJenkinsInterface(TestCase):
         when(self.mock_response).json().thenReturn(
             {
                 'jobs': [
-                    {'name': 'test1', 'color': 'red', 'url': 'http://some-url'},
-                    {'name': 'test2', 'color': 'blue', 'url': 'http://some-url'},
-                    {'name': 'test3', 'color': 'yellow', 'url': 'http://some-url'},
-                    {'name': 'test4', 'color': 'redanime', 'url': 'http://some-url'},
-                    {'name': 'test5', 'color': 'redanime', 'url': 'http://some-url'}
+                    {'name': 'test1', 'color': 'red', 'url': JENKINS_URL},
+                    {'name': 'test2', 'color': 'blue', 'url': JENKINS_URL},
+                    {'name': 'test3', 'color': 'yellow', 'url': JENKINS_URL},
+                    {'name': 'test4', 'color': 'redanime', 'url': JENKINS_URL},
+                    {'name': 'test5', 'color': 'redanime', 'url': JENKINS_URL}
                 ]
             }
         )

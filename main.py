@@ -15,7 +15,7 @@ def main(wf):
     }
 
     for job in options[command](query):
-        wf.add_item(job.name,subtitle=job.description, arg=job.url, valid=True, icon=job.image)
+        wf.add_item(job.name, subtitle=job.description, arg=job.url, valid=True, icon=job.image)
 
     wf.send_feedback()
 
