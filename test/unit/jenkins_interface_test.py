@@ -15,7 +15,7 @@ class TestJenkinsInterface(TestCase):
     def setUp(self):
         self.workflow = Workflow()
 
-        self.old_jenkins_url = self.workflow.settings['jenkins_url']
+        self.old_jenkins_url = self.workflow.settings.get('jenkins_url')
         self.workflow.settings['jenkins_url'] = JENKINS_URL
         self.jenkins_interface = JenkinsInterface(self.workflow)
         self.mock_response = mock()
