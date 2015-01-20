@@ -1,8 +1,6 @@
 from unittest import TestCase
 
-from mock import patch
-
-from mockito import mock, when
+from mock import patch, Mock
 
 from workflow import Workflow
 from jenkins.jenkins_interface import JenkinsInterface
@@ -18,15 +16,14 @@ class TestJenkinsInterface(TestCase):
         self.old_jenkins_url = self.workflow.settings.get('jenkins_url')
         self.workflow.settings['jenkins_url'] = JENKINS_URL
         self.jenkins_interface = JenkinsInterface(self.workflow)
-        self.mock_response = mock()
 
     def tearDown(self):
         self.workflow.settings['jenkins_url'] = self.old_jenkins_url
 
     def _patch_get_with_response(self, mock_get, response):
-        mock_response = mock()
+        mock_response = Mock()
         mock_get.return_value = mock_response
-        when(mock_response).json().thenReturn(response)
+        mock_response.json.return_value = response
 
     @patch("jenkins.jenkins_interface.web.get")
     def test_get_all_jobs(self, mock_get):
