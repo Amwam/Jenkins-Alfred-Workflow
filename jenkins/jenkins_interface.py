@@ -24,11 +24,14 @@ class JenkinsInterface(object):
             return web.get("{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)).json()['jobs']
 
         jobs = [Job(data) for data in _get_jobs_json()]
+
         if query:
             filtered_jobs = self._workflow.filter(query, jobs, lambda x: x.name)
             filtered_jobs.reverse()
             return filtered_jobs
         else:
+            if not jobs:
+                raise NoJobsFound()
             return jobs
 
     def get_failed_jobs(self, query=None):
@@ -39,3 +42,6 @@ class JenkinsInterface(object):
         all_jobs = self.get_all_jobs(query)
         return [job for job in all_jobs if 'anime' in job.status]
 
+
+class NoJobsFound(Exception):
+    pass

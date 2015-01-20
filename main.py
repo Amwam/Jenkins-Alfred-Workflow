@@ -1,5 +1,5 @@
 from workflow import Workflow
-from jenkins.jenkins_interface import JenkinsInterface
+from jenkins.jenkins_interface import JenkinsInterface, NoJobsFound
 
 
 def main(wf):
@@ -14,8 +14,13 @@ def main(wf):
         'all': interface.get_all_jobs
     }
 
-    for job in options[command](query):
-        wf.add_item(job.name, subtitle=job.description, arg=job.url, valid=True, icon=job.image)
+    try:
+        jobs = options[command](query)
+        for job in jobs:
+            wf.add_item(job.name, subtitle=job.description, arg=job.url, valid=True, icon=job.image)
+    except NoJobsFound:
+        wf.logger.debug("Could not find any jobs for instance: %s", wf.settings['jenkins_url'])
+        wf.add_item("Error: No jobs found")
 
     wf.send_feedback()
 
