@@ -16,7 +16,14 @@ class TestMain(TestCase):
     @patch("main.JenkinsInterface.get_all_jobs", )
     def test_main_calls_add_item_for_all_jobs(self, all_jobs):
         self.workflow.args = ['all']
-        all_jobs.return_value = [Mock(Job), Mock(Job)]
+
+        job_data = {
+            'name': 'dummy job',
+            'url': 'http://some-url',
+            'color': 'blue'
+        }
+
+        all_jobs.return_value = [Job(job_data), Job(job_data)]
 
         main(self.workflow)
 

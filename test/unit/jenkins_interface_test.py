@@ -124,3 +124,23 @@ class TestJenkinsInterface(TestCase):
 
         self.assertEqual(1, len(jobs))
         self.assertEqual('test4', jobs[0].name)
+
+    def test_interface_saves_new_url(self):
+        self.jenkins_interface.set_jenkins_url('http://new-url')
+        self.assertEqual('http://new-url', self.workflow.settings['jenkins_url'])
+
+    def test_get_all_jobs_when_no_url_set(self):
+        mock_workflow = Mock(Workflow)
+        mock_workflow.settings = {}
+        interface = JenkinsInterface(mock_workflow)
+        mock_workflow.send_feedback.side_effect = TestException()
+        try:
+            interface.get_all_jobs()
+        except TestException:
+            pass
+        mock_workflow.send_feedback.assert_called_once()
+
+
+class TestException(Exception):
+    """Test exception class to be able to end execution flow, in the middle of a test"""
+    pass
