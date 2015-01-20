@@ -3,13 +3,9 @@ from jenkins.job import Job
 
 
 class JenkinsInterface(object):
-    def __init__(self, workflow, web_wrapper=None):
+    def __init__(self, workflow):
         super(JenkinsInterface, self).__init__()
         self._workflow = workflow
-        if not web_wrapper:
-            web_wrapper = WebWrapper()
-
-        self._web_wrapper = web_wrapper
 
     def set_jenkins_url(self, url):
         self._workflow.settings['jenkins_url'] = url
@@ -25,7 +21,7 @@ class JenkinsInterface(object):
 
         def _get_jobs_json():
             jenkins_url = _get_jenkins_url()
-            return self._web_wrapper.get("{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)).json()['jobs']
+            return web.get("{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)).json()['jobs']
 
         jobs = [Job(data) for data in _get_jobs_json()]
         if query:
@@ -43,10 +39,3 @@ class JenkinsInterface(object):
         all_jobs = self.get_all_jobs(query)
         return [job for job in all_jobs if 'anime' in job.status]
 
-
-class WebWrapper(object):
-    """ Used to better unit test the communication with a Jenkins Server
-    """
-
-    def get(self, url, **kwargs):
-        return web.get(url, kwargs)
