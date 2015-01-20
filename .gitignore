@@ -3,3 +3,4 @@
 jenkins-workflow.iml
 *.coverage
 .DS_Store
+Alfred_Workflow*.egg-info

@@ -1,8 +1,10 @@
 from unittest import TestCase
+
 from mockito import mock, any, when
-import mockito
+
 from workflow import Workflow
-from workflow.jenkins.jenkins_interface import JenkinsInterface
+from jenkins.jenkins_interface import JenkinsInterface
+
 
 JENKINS_URL = "http://some-url:8080"
 

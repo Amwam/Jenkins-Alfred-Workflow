@@ -19,3 +19,9 @@ Running `paver` will run all the unit tests, and show the coverage reports for t
 
 ### Installing
 Added this directory to the Alfred workflows directory will install the workflow
+
+
+### Updating Alfred-Workflow plugin
+The workflow is built using  [Alfred-Workflow](https://github.com/deanishe/alfred-workflow). 
+Using the recommended `pip install` the dependency can be updated using the command `pip install --target=./ Alfred-Workflow==1.11.0` from the root of the project
+

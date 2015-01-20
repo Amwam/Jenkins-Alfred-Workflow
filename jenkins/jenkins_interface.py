@@ -1,5 +1,5 @@
 from workflow import web
-from workflow.jenkins.job import Job
+from jenkins.job import Job
 
 
 class JenkinsInterface(object):

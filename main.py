@@ -1,5 +1,5 @@
 from workflow import Workflow
-from workflow.jenkins.jenkins_interface import JenkinsInterface
+from jenkins.jenkins_interface import JenkinsInterface
 
 
 def main(wf):

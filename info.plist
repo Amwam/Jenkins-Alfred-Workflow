@@ -193,7 +193,7 @@
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>102</integer>
 				<key>keyword</key>
 				<string>fail</string>
 				<key>runningsubtext</key>
