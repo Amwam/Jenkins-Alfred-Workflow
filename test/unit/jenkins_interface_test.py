@@ -58,7 +58,7 @@ class TestJenkinsInterface(TestCase):
         query = "test"
         jobs = self.jenkins_interface.get_all_jobs(query=query)
         self.assertEqual(2, len(jobs))
-        self.assertTrue(all(["two" in jobs[0].name, "one" in jobs[1].name]))
+        self.assertTrue(all(["one" in jobs[0].name, "two" in jobs[1].name]))
 
     @patch("jenkins.jenkins_interface.web.get")
     def test_get_all_failing_jobs(self, mock_get):

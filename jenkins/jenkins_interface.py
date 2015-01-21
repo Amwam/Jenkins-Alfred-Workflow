@@ -27,7 +27,6 @@ class JenkinsInterface(object):
 
         if query:
             filtered_jobs = self._workflow.filter(query, jobs, lambda x: x.name)
-            filtered_jobs.reverse()
             return filtered_jobs
         else:
             if not jobs:
