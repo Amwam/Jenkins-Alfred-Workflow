@@ -16,6 +16,10 @@ def main(wf):
 
     try:
         jobs = options[command](query)
+
+        if not query:
+            wf.add_item("Open Jenkins", arg=interface.get_jenkins_url(), valid=True)
+
         for job in jobs:
             wf.add_item(job.name, subtitle=job.description, arg=job.url, valid=True, icon=job.image)
     except NoJobsFound:

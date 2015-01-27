@@ -13,8 +13,9 @@ class TestMain(TestCase):
         self.mock_interface = Mock(JenkinsInterface)
         self.workflow = Mock(Workflow)
 
-    @patch("main.JenkinsInterface.get_all_jobs", )
-    def test_main_calls_add_item_for_all_jobs(self, all_jobs):
+    @patch("main.JenkinsInterface.get_all_jobs")
+    @patch("main.JenkinsInterface.get_jenkins_url")
+    def test_main_calls_add_item_for_all_jobs(self, get_jenkins_url, all_jobs):
         self.workflow.args = ['all']
 
         job_data = {
@@ -24,10 +25,12 @@ class TestMain(TestCase):
         }
 
         all_jobs.return_value = [Job(job_data), Job(job_data)]
+        get_jenkins_url.return_value = "http://jenkins-url.com"
 
         main(self.workflow)
 
-        self.assertEquals(2, self.workflow.add_item.call_count)
+        self.assertEquals(3, self.workflow.add_item.call_count)
+        self.assertEqual("http://jenkins-url.com", self.workflow.add_item.mock_calls[0][2]['arg'])
         self.workflow.send_feedback.assert_called_once()
 
 
