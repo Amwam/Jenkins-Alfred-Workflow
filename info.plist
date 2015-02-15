@@ -18,6 +18,14 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C3869749-E660-4D39-880E-DDCC244AD1F5</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 		</array>
 		<key>3A5F90F6-D823-4689-923A-B4DAA96772A1</key>
 		<array>
@@ -26,6 +34,14 @@
 				<string>92AB5674-45CC-4E10-A540-40DE9DDF9862</string>
 				<key>modifiers</key>
 				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C3869749-E660-4D39-880E-DDCC244AD1F5</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
@@ -40,6 +56,14 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C3869749-E660-4D39-880E-DDCC244AD1F5</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 		</array>
 		<key>54087FA9-94F9-4259-A28F-3A45C4C77397</key>
 		<array>
@@ -48,6 +72,14 @@
 				<string>92AB5674-45CC-4E10-A540-40DE9DDF9862</string>
 				<key>modifiers</key>
 				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C3869749-E660-4D39-880E-DDCC244AD1F5</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
@@ -138,6 +170,14 @@
 				<integer>102</integer>
 				<key>keyword</key>
 				<string>jenkins</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
@@ -167,6 +207,14 @@
 				<integer>102</integer>
 				<key>keyword</key>
 				<string>jenkinsfail</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
@@ -190,12 +238,38 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>curl -X POST {query}/build
+open {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C3869749-E660-4D39-880E-DDCC244AD1F5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
 				<string>fail</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
@@ -225,6 +299,14 @@
 				<integer>127</integer>
 				<key>keyword</key>
 				<string>building</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
@@ -320,6 +402,11 @@
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>C3869749-E660-4D39-880E-DDCC244AD1F5</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
 		</dict>
 		<key>EDEEC501-4268-4179-8D41-A67C5D10356A</key>
 		<dict>

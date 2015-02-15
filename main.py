@@ -21,7 +21,15 @@ def main(wf):
             wf.add_item("Open Jenkins", arg=interface.get_jenkins_url(), valid=True)
 
         for job in jobs:
-            wf.add_item(job.name, subtitle=job.description, arg=job.url, valid=True, icon=job.image)
+            assert isinstance(wf, Workflow)
+            wf.add_item(title=job.name,
+                        subtitle=job.description,
+                        modifier_subtitles={
+                            'ctrl': 'Trigger a build, and open'
+                        },
+                        arg=job.url,
+                        valid=True,
+                        icon=job.image)
     except NoJobsFound:
         wf.logger.debug("Could not find any jobs for instance: %s", wf.settings['jenkins_url'])
         wf.add_item("Error: No jobs found")
