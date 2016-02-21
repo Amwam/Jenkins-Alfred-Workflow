@@ -9,6 +9,8 @@ def main(wf):
 
     options = {
         'set_url': interface.set_jenkins_url,
+        'login': interface.set_login,
+        'clear_login': interface.clear_login,
         'failing': interface.get_failed_jobs,
         'building': interface.get_building_jobs,
         'all': interface.get_all_jobs

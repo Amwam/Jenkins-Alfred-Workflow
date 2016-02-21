@@ -11,10 +11,30 @@ class JenkinsInterface(object):
         self._workflow.settings['jenkins_url'] = url
         self._workflow.settings.save()
 
+    def set_login(self, query):
+        query = query.split(' ')
+        username = query[0]
+        api_token = query[1]
+        self._workflow.settings['username'] = username
+        self._workflow.save_password('jenkins_api_token', api_token)
+
+    def clear_login(self):
+        del self._workflow.settings['username']
+        self._workflow.clear_password('jenkins_api_token')
+
     def get_all_jobs(self, query=None):
         def _get_jobs_json():
             jenkins_url = self.get_jenkins_url()
-            return web.get("{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)).json()['jobs']
+            headers = {}
+            url = "{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)
+            auth = None
+            if 'username' in self._workflow.settings:
+                import urllib, urlparse
+                username = self._workflow.settings['username']
+                token = urllib.quote(self._workflow.get_password('jenkins_api_token'))
+                auth = (username, token)
+            self._workflow.logger.debug(auth)
+            return web.get(url, auth=auth).json()['jobs']
 
         jobs = [Job(data) for data in _get_jobs_json()]
 
