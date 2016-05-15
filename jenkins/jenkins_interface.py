@@ -1,3 +1,5 @@
+import base64
+
 from workflow import web
 from jenkins.job import Job
 
@@ -28,13 +30,15 @@ class JenkinsInterface(object):
             headers = {}
             url = "{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)
             auth = None
+            headers = {}
             if 'username' in self._workflow.settings:
-                import urllib, urlparse
                 username = self._workflow.settings['username']
-                token = urllib.quote(self._workflow.get_password('jenkins_api_token'))
+                token = self._workflow.get_password('jenkins_api_token')
                 auth = (username, token)
-            self._workflow.logger.debug(auth)
-            return web.get(url, auth=auth).json()['jobs']
+
+                base64string = base64.encodestring('%s:%s' % (username, token)).replace('\n', '')
+                headers['Authorization'] = "Basic %s" % base64string
+            return web.get(url, headers=headers).json()['jobs']
 
         jobs = [Job(data) for data in _get_jobs_json()]
 

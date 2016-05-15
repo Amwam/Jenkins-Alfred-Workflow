@@ -186,7 +186,7 @@
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
-				<string>/usr/bin/python main.py all "{query}"</string>
+				<string>/usr/local/bin/python main.py all "{query}"</string>
 				<key>subtext</key>
 				<string>Search for jenkins jobs</string>
 				<key>title</key>
@@ -240,7 +240,7 @@
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
-				<string>/usr/bin/python main.py failing "{query}"</string>
+				<string>python main.py failing "{query}"</string>
 				<key>subtext</key>
 				<string>Show the failing builds in jenkins</string>
 				<key>title</key>
@@ -297,7 +297,7 @@ open {query}</string>
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
-				<string>/usr/bin/python main.py failing "{query}"</string>
+				<string>python main.py failing "{query}"</string>
 				<key>subtext</key>
 				<string>Show the failing builds in jenkins</string>
 				<key>title</key>
@@ -334,7 +334,7 @@ open {query}</string>
 				<key>runningsubtext</key>
 				<string>Loading...</string>
 				<key>script</key>
-				<string>/usr/bin/python main.py building "{query}"</string>
+				<string>python main.py building "{query}"</string>
 				<key>subtext</key>
 				<string>Show the building jobs in jenkins</string>
 				<key>title</key>
