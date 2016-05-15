@@ -7,15 +7,15 @@ class Job(object):
 
     @property
     def name(self):
-        return self._data['name']
+        return self._data.get('name')
 
     @property
     def url(self):
-        return self._data['url']
+        return self._data.get('url')
 
     @property
     def status(self):
-        return self._data['color']
+        return self._data.get('color')
 
     @property
     def image(self):
