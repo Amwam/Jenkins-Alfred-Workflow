@@ -24,23 +24,33 @@ class JenkinsInterface(object):
         del self._workflow.settings['username']
         self._workflow.clear_password('jenkins_api_token')
 
+    @staticmethod
+    def parse_jobs(data):
+        jobs = [Job(data)]
+        if data.get('jobs', []):
+            for job in data.get('jobs', []):
+                job['name'] = '{}/{}'.format(data.get('name'), job['name'])
+                jobs.append(Job(job))
+        return jobs
+
     def get_all_jobs(self, query=None):
         def _get_jobs_json():
             jenkins_url = self.get_jenkins_url()
             headers = {}
-            url = "{}/api/json?tree=jobs[name,url,color,description]".format(jenkins_url)
-            auth = None
+            job_params = 'name,url,color,description'
+            url = "{}/api/json?tree=jobs[{params},jobs[{params}]]".format(jenkins_url,
+                                                                          params=job_params)
             headers = {}
             if 'username' in self._workflow.settings:
                 username = self._workflow.settings['username']
                 token = self._workflow.get_password('jenkins_api_token')
-                auth = (username, token)
-
                 base64string = base64.encodestring('%s:%s' % (username, token)).replace('\n', '')
                 headers['Authorization'] = "Basic %s" % base64string
             return web.get(url, headers=headers).json()['jobs']
 
-        jobs = [Job(data) for data in _get_jobs_json()]
+        jobs = []
+        for job in _get_jobs_json():
+            jobs.extend(self.parse_jobs(job))
 
         if query:
             filtered_jobs = self._workflow.filter(query, jobs, lambda x: x.name)

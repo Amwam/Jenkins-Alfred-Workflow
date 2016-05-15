@@ -32,6 +32,13 @@ class TestJenkinsInterface(TestCase):
         self.assertEqual(1, len(jobs))
 
     @patch("jenkins.jenkins_interface.web.get")
+    def test_get_jobs_with_subjobs(self, mock_get):
+        response = {'jobs': [{'name': 'test', 'jobs': [{'name': 'test2'}]}]}
+        self._patch_get_with_response(mock_get, response)
+        jobs = self.jenkins_interface.get_all_jobs()
+        self.assertEqual(2, len(jobs))
+
+    @patch("jenkins.jenkins_interface.web.get")
     def test_get_all_jobs_finds_no_jobs_raises_error(self, mock_get):
         self._patch_get_with_response(mock_get, {'jobs': []})
         self.assertRaises(NoJobsFound, self.jenkins_interface.get_all_jobs)
@@ -42,7 +49,6 @@ class TestJenkinsInterface(TestCase):
 
         jobs = self.jenkins_interface.get_all_jobs(query="query")
         self.assertEqual(0, len(jobs))
-
 
     @patch("jenkins.jenkins_interface.web.get")
     def test_get_all_jobs_filters_with_query(self, mock_get):
@@ -75,7 +81,6 @@ class TestJenkinsInterface(TestCase):
         self.assertEqual(2, len(jobs))
         self.assertEqual('test1', jobs[0].name)
         self.assertEqual('test4', jobs[1].name)
-
 
     @patch("jenkins.jenkins_interface.web.get")
     def test_get_all_failing_jobs_with_query(self, mock_get):

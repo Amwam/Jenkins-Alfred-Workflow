@@ -1,5 +1,5 @@
 import os
-
+import urllib
 
 class Job(object):
     def __init__(self, data):
@@ -7,7 +7,7 @@ class Job(object):
 
     @property
     def name(self):
-        return self._data.get('name')
+        return urllib.unquote(self._data.get('name', ''))
 
     @property
     def url(self):
