@@ -3,7 +3,7 @@ from paver.setuputils import setup
 
 setup(
     name="Jenkins-Alfred-Workflow",
-    packages=['jenkins_workflow'],
+    packages=['jenkins'],
     version="1.0",
     url="http://www.amwam.me/",
     author="Amit Shah",
@@ -27,5 +27,5 @@ def default():
 @task
 def unit_tests():
     """Runs all unit tests under the test/unit folder structure."""
-    sh("nosetests test/unit --with-cov --cov-report term-missing")
+    sh('pytest --cov ./')
 
